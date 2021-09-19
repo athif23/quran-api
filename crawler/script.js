@@ -9,9 +9,10 @@ const temp = require('../data/quran-tafsir.json')
 const getSurah = surah => {
     const editions = [
         'quran-simple-enhanced', 'ar.alafasy',
-        'en.transliteration', 'en.sahih'
+        'en.transliteration', 'en.sahih',
+        'quran-tajweed'
     ]
-    
+
     const apiUrl = `${API_BASEURL}/surah/${surah}/editions/${editions.join(',')}`
     console.log(`> Prepare surah: ${surah} (${apiUrl})`)
 
@@ -49,7 +50,7 @@ const operate = async (surah, tafsirSurah = {}, tryFlag = false) => {
         const responseText = await (await getSurah(surah)).text()
         const response = responseText.replace(/\\u/g, '%u')
         const { code, status, data } = JSON.parse(response)
-        const [simple, arab, transliteration, english] = data
+        const [simple, arab, transliteration, english, tajweed] = data
         const activeSurah = temp[`${arab.number}.1`].surah
 
         if (code !== 200) throw { surah, code, status }
@@ -142,6 +143,7 @@ const operate = async (surah, tafsirSurah = {}, tryFlag = false) => {
                         transliteration: {
                             en: transliteration.ayahs[idx].text.trim()
                         },
+                        tajweed: tajweed.ayahs[idx].text.trim()
                     },
                     translation: {
                         en: english.ayahs[idx].text.trim(),

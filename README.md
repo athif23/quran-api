@@ -2,6 +2,11 @@
 
 > Quran API with media audio ***Syekh. Mishary Rashid Al-Afasy murrotal***.
 
+> This is a fork from https://github.com/sutanlab/quran-api/
+> Some of the things changed are,
+> - adding `quran-tajweed` in the editions.
+> - add `tajweed` property to `meta.text`
+
 ## Deployed in: https://api.quran.sutanlab.id 
 #### Try your own!
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https%3A%2F%2Fgithub.com%2Fsutanlab%2Fquran-api)
